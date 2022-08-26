@@ -2,10 +2,78 @@ BOOK_TITLE_LIST = ['Git Pocket Guide', 'Learning JavaScript Design Patterns',
                    'Designing Evolvable Web APIs with ASP.NET', 'Speaking JavaScript', "You Don't Know JS",
                    'Programming JavaScript Applications', 'Eloquent JavaScrip', 'Understanding ECMAScript 6']
 
-ISBN = {
+ISBN_STRING = {
         "userId": "string",
         "isbn": "string"
+}
+ISBN = "9781491904244"
+data = {
+    "userId": "9d99ecdd-458d-4431-a228-3f86a2946800",
+    "collectionOfIsbns": [
+        {
+            "isbn": "9781449365035",
+            "title": "Speaking JavaScript",
+            "subTitle": "An In-Depth Guide for Programmers",
+            "author": "Axel Rauschmayer",
+            "publish_date": "2014-02-01T00:00:00.000Z",
+            "publisher": "O'Reilly Media",
+            "pages": 460,
+            "description": "Like it or not, JavaScript is everywhere these days-from browser to server to mobile-and now you, too, need to learn the language or dive deeper than you have. This concise book guides you into and through JavaScript, written by a veteran programmer who o",
+            "website": "http://speakingjs.com/"
+        }
+    ]
+}
+
+ListOfBooks={
+  "userId": "d73fb3d6-04ba-47c1-8b41-f2c90f25559c",
+  "collectionOfIsbns": [
+    {
+      "isbn": "9781449331818"
     }
+  ]
+}
+account = {
+  "userName": "tamar",
+  "password": "sam!@#123ARA"
+}
+userID = "d73fb3d6-04ba-47c1-8b41-f2c90f25559c"
+PUT_USER = {
+    "userId": userID,
+    "isbn": "9781449331818"
+}
+
+EMPTY_ACCOUNT = {
+    "userId": "",
+    "isbn": ""
+}
+new_account = {
+  "userName": "tamasrsam",
+  "password": "saaasdmSm!@#123ARA"
+}
+account_not_auth = {
+  "userName": "tamassessr",
+  "password": "sam!@#e123ARA"
+}
+wrong_password = ('{"code":"1300","message":"Passwords must have at least one non alphanumeric '
+ "character, one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase "
+ "('a'-'z'), one special character and Password must be eight characters or "
+ 'longer."}')
+ISBN2 = "9781449331818"
+DELACCOUNT = {
+  "isbn": "9781491904244",
+  "userId": '6fc01df9-88a3-4153-9a7e-70d519afb6e0'
+}
+ACCOUNT_DEL = {
+  "isbn": "9781491904244",
+  "userId": '6fc01df9-88a3-4153-9a7e-70d519afb6e0'
+}
+
+url = "https://bookstore.toolsqa.com/"
+header = {'accept': 'application/json'}
+loginNone = {"userName": "temotddddooo", "password": "temOOOOOd£321@RRR"}
+login = {"userName": "foo", "password": "tamdsar&ssD*DF123£"}
+empty_user = {"userName": "", "password": ""}
+new_user = {"userName": "adhhvyemd", "password": "ad£32h1FerDG&fff"}
 
 POST_BOOK = {'isbn': '9781449325862', 'title': 'Git Pocket Guide', 'subTitle': 'A Working Introduction',
                    'author': 'Richard E. Silverman', 'publish_date': '2020-06-04T08:48:39.000Z',
@@ -54,3 +122,4 @@ BOOK = {'books': [{'isbn': '9781449325862', 'title': 'Git Pocket Guide', 'subTit
                    'publish_date': '2016-09-03T00:00:00.000Z', 'publisher': 'No Starch Press', 'pages': 352,
                    'description': 'ECMAScript 6 represents the biggest update to the core of JavaScript in the history of the language. In Understanding ECMAScript 6, expert developer Nicholas C. Zakas provides a complete guide to the object types, syntax, and other exciting changes that E',
                    'website': 'https://leanpub.com/understandinges6/read'}]}
+

@@ -1,56 +1,8 @@
 import logging
 import pytest
-from api.book_store_api import BookApi
+from data import *
 from api.account_api import AccountApi
-from models.account import Account
 import requests
-
-login = {"userName": "foo",
-         "password": "tamdsar&ssD*DF123£"}
-account_tam_auth = {
-  "userName": "tamarauth",
-  "password": "TamAr1ddd23$%^"
-}
-usedID_tamauth = "dfc0c7f2-7554-4c66-b300-f2d5e855586c"
-accountAuth = {
-    "userName": "tamar",
-    "password": "SamA@213**&"
-}
-empty_account = {
-    "userName": "",
-    "password": ""
-}
-selaUserId = '6fc01df9-88a3-4153-9a7e-70d519afb6e0'
-account_auth = {
-    "userName": "tamaaaasrsam",
-    "password": "SamA@213**&"
-}
-# {"userName": "tamar", "pass": "12345"}
-wrong_password = ('{"code":"1300","message":"Passwords must have at least one non alphanumeric '
-                  "character, one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase "
-                  "('a'-'z'), one special character and Password must be eight characters or "
-                  'longer."}')
-account_not_auth = {
-    "userName": "tamarsamara",
-    "password": "SamA@213**&"
-}
-account_userID = "3d8e4618-50c4-492d-a26b-bdc2c6ba44c7"
-new_account = {
-    "userName": "tamar",
-    "password": "12*aA$s@a345"
-}
-BOOK_LIST_TO_ADD = {
-    "userId": selaUserId,
-    "collectionOfIsbns": [
-        {
-            "isbn": "9781491904244"
-        }
-    ]
-}
-BOOKS_DELETE = {
-    "isbn": "9781491904244",
-    "userId": selaUserId
-}
 
 
 @pytest.fixture(scope="session")

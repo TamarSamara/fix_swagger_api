@@ -1,0 +1,1 @@
+2022-08-09 16:23:29 [33mWARNING[0m status code 404 from delete user which means success!

@@ -1,0 +1,12 @@
+FROM python:3
+
+WORKDIR /fix_swagger_api
+
+COPY . /swaggerApi-pet-store .
+COPY .gitignore .
+COPY __init__.py .
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+CMD ["pytest", "./swaggerApi-pet-store/testPet.py"]

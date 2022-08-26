@@ -1,0 +1,2 @@
+ deleteee pet : 404
+ type deleteee pet : <class 'int'>

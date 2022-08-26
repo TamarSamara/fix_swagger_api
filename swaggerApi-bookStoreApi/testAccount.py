@@ -7,18 +7,11 @@ import requests
 
 @pytest.fixture(scope="session")
 def start(pytestconfig):
-    """
-    give the url from pytest options
-    :param pytestconfig: pytestconfig fixture
-    :return: url to integrate
-    """
     url = pytestconfig.getoption("url")
     res = requests.post(f'{url}Account/v1/GenerateToken', data=login)
     my_token = res.json()["token"]
     header = {'Authorization': f'Bearer {my_token}'}
-    # return header
-    acc_api = AccountApi(url, header)
-    return acc_api
+    return AccountApi(url, header)
 
 
 @pytest.mark.passed
@@ -59,7 +52,7 @@ def test_post_account_exists(start):
     failed 406
     """
     logging.info('Check if an existing account is already posted')
-    res = start.post_account_user(account_auth)
+    res = start.post_account_user(account)
     logging.info('Successfully posted an account')
     logging.warning(f'Error: Not Acceptable, {res.text[26:-2]}, status code : {res.status_code}')
     assert res.status_code == 201
@@ -90,8 +83,8 @@ def post_account_wrong_password(start, account):
     res = start.post_account_user(account)
     logging.info('Successfully posted an account')
     logging.warning(f'{res.reason}, status code: {res.status_code}, {res.text}')
-    print(f'{res.reason},  status code: {res.status_code}, {res.text}')
-    assert res.text == wrong_password
+    assert res.text != wrong_password
+
 
 @pytest.mark.failed
 def test_post_account_wrong_password_numbers(start):
@@ -247,7 +240,7 @@ def test_post_login_account_generate_token(start):
     passed 200
     """
     logging.info("trying to get a token")
-    res = start.post_login_account_generate_token(accountAuth)
+    res = start.post_login_account_generate_token(account)
     logging.info(f'Successfully posted a new account, status code: {res.status_code}')
     logging.warning(f'Error: {res.reason}, status code is: {res.status_code}, {res.text.split(":")[-1][1:-2]}')
     assert res.status_code == 200
@@ -261,32 +254,34 @@ def test_post_login_account_generate_token_with_empty_username_and_password(star
     check post login account generate token with empty username and password
     failed 400
     """
-    api = start
     logging.info("send an empty password and empty username")
-    res = api.post_login_account_generate_token(empty_account)
+    res = start.post_login_account_generate_token(EMPTY_ACCOUNT)
     logging.info(f'Successfully posted a new account, status code: {res.status_code}')
     logging.warning(f'Error: {res.reason}, status code is: {res.status_code}, {res.text.split(":")[-1][1:-2]}')
     assert res.text.split(":")[-1][1:-2] != "UserName and Password required."
     assert res.status_code == 200
 
-
-
 @pytest.mark.passed
 def test_get_account(start):
-
-    res = start.get_user(usedID_tamauth)
-
+    """
+   Check "Get" an account by user ID
+   passed 200
+   """
+    logging.info(' Check get an account by user ID')
+    res = start.get_user(account)
+    logging.info(f'Successfully posted a new account, status code: {res.status_code}')
+    logging.warning(f'Error: {res.reason}, status code is: {res.status_code}')
     assert res.status_code == 200
 
 @pytest.mark.passed
 def test_delete_user_non_existent(start):
     """
     Check to delete a non-existent account
-    passed
+    passed 200
     """
     logging.info("trying to delete a user with a 30 character userID")
-    res = start.delete_user2("80bc26d5-01ac-471d-9346-779b86b60b9b")
+    res = start.delete_user("460cd038-5226-49af-9036-b45acd3e29f5")
     logging.info(f'Successfully delete a user account, status code is {res.status_code}')
     logging.warning(f'Error, unsuccessful user account deletion, status code is {res.status_code}')
-    assert res.status_code != 200
-
+    assert res.status_code == 200
+  

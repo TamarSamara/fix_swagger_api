@@ -288,5 +288,5 @@ def test_delete_user_non_existent(start):
     res = start.delete_user2("80bc26d5-01ac-471d-9346-779b86b60b9b")
     logging.info(f'Successfully delete a user account, status code is {res.status_code}')
     logging.warning(f'Error, unsuccessful user account deletion, status code is {res.status_code}')
-    assert response.status_code != 200
+    assert res.status_code != 200
 

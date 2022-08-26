@@ -11,11 +11,11 @@ class AccountApi(BaseApi):
         return res
 
     def delete_user(self, uid: str):
-        res = self.session.delete(f"{self._url}/User/{uid}")
+        res = self.session.get(url=f"{self._url}User/{uid}", headers=self._headers)
         return res
 
     def get_user(self, uid: str):
-        res = self.session.get(f"{self._url}/User/{uid}")
+        res = self.session.get(url=f"{self._url}User/{uid}", headers=self._headers)
         return res
 
     def post_login_authorized(self, login):
@@ -30,6 +30,4 @@ class AccountApi(BaseApi):
         res = self.session.post(url=f"{self._url}/GenerateToken", data=login)
         return res
 
-    def delete_user2(self, uid: str):
-        res = self.session.delete(f"{self._url}/User/{uid}", headers=self._headers)
-        return res
+
